@@ -27,17 +27,17 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-d5389814e9e2ba6f6de5.js"
+    "url": "webpack-runtime-e7f78d10d31aaf6f9660.js"
   },
   {
     "url": "framework-b17a64ad725e0b3c1338.js"
   },
   {
-    "url": "app-9e0bc2b3a34c284906d2.js"
+    "url": "app-0d4661ce6d7d9fd525fd.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "4f15950bb932eb0d6e3bb2be75ba4d90"
+    "revision": "90e264e7ad1d91d04e6a528a065fe578"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-999e66766b99e2071776.js"
@@ -48,14 +48,14 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "4b50c6459a53a618f2ba06edfb195b99"
+    "revision": "8de5d467296f6f2a42ef5c1fc2f45eca"
   },
   {
     "url": "polyfill-6bea43948be0158e477c.js"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "3e0a9ab0f09378d636c541565339f7bc"
+    "revision": "7ee65825abb1963bc8799a15e10b6303"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
@@ -142,12 +142,12 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   lastNavigationRequest = event.request.url
 
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^`), ``)
+  pathname = pathname.replace(new RegExp(`^/riddle20200831`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-9e0bc2b3a34c284906d2.js`))) {
+  if (!resources || !(await caches.match(`/riddle20200831/app-0d4661ce6d7d9fd525fd.js`))) {
     return await fetch(event.request)
   }
 
@@ -160,7 +160,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/riddle20200831/offline-plugin-app-shell-fallback/index.html`
   const offlineShellWithKey = workbox.precaching.getCacheKeyForURL(offlineShell)
   return await caches.match(offlineShellWithKey)
 })
